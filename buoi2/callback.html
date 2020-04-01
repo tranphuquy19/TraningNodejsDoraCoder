@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">Click me</button>
+</body>
+<script>
+    let count = 0;
+    let sayhello = function () {
+        console.log(`Hello everyone ${count++}`);
+        alert('Chao cac ban')
+    }
+    document.getElementById('btn1').addEventListener('click', sayhello);
+</script>
+
+</html>
