@@ -1,5 +1,5 @@
 let myPromise = new Promise((resolve, reject) => {
-    reject('Error!');
+    resolve('Error!');
 });
 
 myPromise

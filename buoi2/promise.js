@@ -36,12 +36,20 @@ toTinh();
 
 // xu lí bdb -> callback, promise, async/await
 
-// let myPromise = new Promise(function (resolve, reject) { // khai bao promise
+let myPromise = new Promise(function (resolve, reject) { // khai bao promise
 
-// });
+});
 
-// myPromise.then(function (ketQua) { // su dung promise
-//     console.log(ketQua);
-// }).catch(function (error) {
-//     console.log(error);
-// })
+myPromise.then(function (ketQua) { // su dung promise
+    console.log(ketQua);
+}).catch(function (error) {
+    console.log(error);
+})
+
+// trạng thái Promise
+/**
+ * 1. Pending -> trạng thái đầu tiên khi new Promise, -> đang xử lí
+ * 2. Fulfilled (thỏa mãn) -> xử lí xong
+ * 3. Rejected (lỗi, thoát) -> xử lí có lỗi trong quá trình chạy
+ */
+// thenable chain(chuỗi)

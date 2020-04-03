@@ -13,37 +13,38 @@
  * Trong lúc hàm async tạm dừng, hàm được gọi sẽ tiếp tục chạy. (hàm mà nhận được Promise tiềm ẩn được trả về bởi hàm async).
  */
 
-let myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('Success!');
-    }, 3000);
-});
-
-async function execute() {
-    console.log('Bat dau');
-    const result = await myPromise;
-    console.log(result);
-    console.log('ket thuc');
-}
-
-execute();
-
-// Thực thi promise trong 1 function
-
-
-// let myPromise = function () {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve('Success!');
-//         }, 3000);
-//     });
-// }
+// let myPromise = new Promise((resolve, reject) => {
+//     console.log('Promise chay');
+//     setTimeout(() => {
+//         resolve('Success!');
+//     }, 3000);
+// });
 
 // async function execute() {
 //     console.log('Bat dau');
-//     const result = await myPromise();
+//     const result = await myPromise;
 //     console.log(result);
 //     console.log('ket thuc');
 // }
 
 // execute();
+
+// Thực thi promise trong 1 function
+
+
+let myPromise = function () {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Success!');
+        }, 3000);
+    });
+}
+
+async function execute() {
+    console.log('Bat dau');
+    const result = await myPromise();
+    console.log(result);
+    console.log('ket thuc');
+}
+
+execute();
