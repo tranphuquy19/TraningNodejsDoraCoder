@@ -3,7 +3,7 @@ let router = express.Router();
 
 router.route('/')
     .get((req, res, next) => {
-        res.send('Get all users 123');
+        res.send('Get all users');
     })
     .post((req, res, next) => {
         res.send('Create a user');
