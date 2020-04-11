@@ -8,7 +8,7 @@ const PORT = 3000;
  * Route ALL
  */
 app.all('/', (req, res, next) => {
-    console.log('All routing');
+    console.log('route.all() first');
     next();//
 });
 
@@ -17,7 +17,9 @@ app.get('/', (req, res, next) => {
     // next();
 });
 
-
+app.all('/', (req, res, next) => { // thứ tự route (route order)
+    console.log('route.all() last');
+});
 
 /**
  * Duplicate routing
@@ -111,5 +113,13 @@ app.route('/books/:bookId')
         res.send(`Deleted book with bookId: ${req.params.bookId}`)
     });
 
+/**
+ * Route module
+ */
+let routes = require('./routes');
+app.use(routes);
+
+let userRoutes = require('./userRoutes');
+app.use('/user', userRoutes);
 
 app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));
