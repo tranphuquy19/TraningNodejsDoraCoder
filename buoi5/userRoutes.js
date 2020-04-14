@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-router.route('/')
+router.route('/') // CRUD localhost:3000/user/123
     .get((req, res, next) => {
         res.send('Get all users');
     })
