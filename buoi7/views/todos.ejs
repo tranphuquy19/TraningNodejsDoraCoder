@@ -41,45 +41,22 @@
                 </form>
             </div>
             <div class="col-8 p-3 bg-light" style="max-height: 500px; overflow-y: scroll;">
+
+                <% tasks.forEach(task => {%>
                 <div class="card border-secondary m-1">
-                    <div class="card-header">Title</div>
+                    <div class="card-header"><b>Task name: </b><%= task.name %> (<b><%= task.id %></b>)</div>
                     <div class="card-body">
                         <div class="text-sm">
-                            <p><b>Description</b>: ahiahihasd</p>
-                            <p><b>Deadline</b>: ahiahihasd</p>
+                            <p><b>Description</b>: <%= task.description %> </p>
+                            <p><b>Deadline</b>: <%= task.deadline %></p>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="/todos" class="btn btn-warning">Edit</a>
-                        <a href="/todos" class="btn btn-danger">Delete</a>
+                        <a href="/todos/<%= task.id %>/edit" class="btn btn-warning">Edit</a>
+                        <a href="/todos/<%= task.id %>/delete" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
-                <div class="card border-secondary m-1">
-                    <div class="card-header">Title</div>
-                    <div class="card-body">
-                        <div class="text-sm">
-                            <p><b>Description</b>: ahiahihasd</p>
-                            <p><b>Deadline</b>: ahiahihasd</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/todos" class="btn btn-warning">Edit</a>
-                        <a href="/todos" class="btn btn-danger">Delete</a>
-                    </div>
-                </div>
-                <div class="card border-secondary m-1">
-                    <div class="card-header">Title</div>
-                    <div class="card-body">
-                        <div class="text-sm">
-                            <p><b>Description</b>: ahiahihasd</p>
-                            <p><b>Deadline</b>: ahiahihasd</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/todos" class="btn btn-warning">Edit</a>
-                        <a href="/todos" class="btn btn-danger">Delete</a>
-                    </div>
-                </div>
+                <% }) %>
             </div>
         </div>
     </div>

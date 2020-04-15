@@ -1,14 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var uuid = require('uuid').v4;
 
-let todos = [];
+let tasks = [];
 
 router.route('/')
     .get((req, res) => {
-        res.render('todos', { title: 'Home' });
+        res.render('todos', { title: 'Home', tasks });
     })
     .post((req, res) => {
-        res.render('todos', { title: 'Home' });
+        const { name, description, deadline } = req.body;
+        tasks.push({
+            id: uuid(),
+            name, description, deadline
+        });
+        res.render('todos', { title: 'Home', tasks });
     });
 
 router.get('/:todoId/:action', (req, res) => {
