@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title><%= title %> </title>
+  <title><%= title %></title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,9 +14,8 @@
 
 <body>
   <div class="container-fluid">
-    <%- include nav.partial.ejs %>
-    <h1>Welcome to Todo App</h1>
-    <a class="btn btn-primary" href="/todos">View todos</a>
+    <%- include nav.ejs %>
+    <a href="/todos" class="btn btn-primary m-5">Nhảy đến Todo app</a>
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title><%= title %> | Todos</title>
+    <title><%= title %></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,42 +14,41 @@
 
 <body>
     <div class="container-fluid bg-light">
-        <%- include nav.partial.ejs %>
+        <%- include nav.ejs %>
         <div class="row p-3">
-            <div class="col-4 bg-light border border-primary rounded">
+            <div class="col-4 border border-primary rounded mt-2 p-3">
                 <h3>Enter your task</h3>
-                <form action="todos" method="POST">
+                <form action="/todos" method="POST">
                     <div class="form-group mt-2 p-3 border border-secondary rounded">
                         <label for="name">Task name</label>
                         <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
-                            placeholder="Enter your todo name">
-                        <small id="helpId" class="form-text text-muted">name of task</small>
+                            placeholder="Enter task name">
+                        <small id="helpId" class="form-text text-muted">task name</small>
                     </div>
                     <div class="form-group mt-2 p-3 border border-secondary rounded">
-                        <label for="description">Task description</label>
+                        <label for="name">Task description</label>
                         <input type="text" class="form-control" name="description" id="description"
-                            aria-describedby="helpId" placeholder="Enter description">
-                        <small id="helpId" class="form-text text-muted">description of task</small>
+                            aria-describedby="helpId" placeholder="Enter task description">
+                        <small id="helpId" class="form-text text-muted">task description</small>
                     </div>
                     <div class="form-group mt-2 p-3 border border-secondary rounded">
-                        <label for="deadline">Deadline</label>
+                        <label for="deadline">Task deadline</label>
                         <input type="text" class="form-control" name="deadline" id="deadline" aria-describedby="helpId"
-                            placeholder="Enter datetime">
-                        <small id="helpId" class="form-text text-muted">deadline of task</small>
+                            placeholder="Enter task deadline">
+                        <small id="helpId" class="form-text text-muted">task deadline</small>
                     </div>
-                    <button type="submit" class="btn btn-primary m-2">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="col-8 p-3 bg-light" style="max-height: 500px; overflow-y: scroll;">
-
-                <% tasks.forEach(task => {%>
-                <div class="card border-secondary m-1">
-                    <div class="card-header"><b>Task name: </b><%= task.name %> (<b><%= task.id %></b>)</div>
+                <% tasks.forEach(task => { %>
+                <div class="card m-1 border border-secondary rounded">
+                    <div class="card-header">
+                        <p>Task name: <%= task.name %> <b>(<%= task.id %>)</b> </p>
+                    </div>
                     <div class="card-body">
-                        <div class="text-sm">
-                            <p><b>Description</b>: <%= task.description %> </p>
-                            <p><b>Deadline</b>: <%= task.deadline %></p>
-                        </div>
+                        <p>Task description: <%= task.description %> </p>
+                        <p>Task deadline: <%= task.deadline %></p>
                     </div>
                     <div class="card-footer">
                         <a href="/todos/<%= task.id %>/edit" class="btn btn-warning">Edit</a>

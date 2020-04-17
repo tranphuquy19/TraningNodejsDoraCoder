@@ -2,41 +2,56 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('uuid').v4;
 
-let tasks = [];
+/* GET home page. */
+// router.get('/', function(req, res, next) {
+//   res.render('todos', { title: 'Task Manager' });
+// });
+let temp = {
+    id: 'asdas',
+    name: 'asda',
+    description: '',
+    deadline: 'ad'
+};
+
+let tasks = [
+    // {
+    //     id: 123,
+    //     name: 'asda',
+    //     description: '',
+    //     deadline: 'ad'
+    // }
+];
+//CRUD -> R= read, C=Create, U=Update, Delete
 
 router.route('/')
-    .get((req, res) => {
-        res.render('todos', { title: 'Home', tasks });
+    .get((req, res, next) => {
+        res.render('todos', { title: 'Task manager', tasks });
     })
-    .post((req, res) => {
-        const { name, description, deadline } = req.body;
+    .post((req, res, next) => {
         tasks.push({
             id: uuid(),
-            name, description, deadline
+            ...req.body
         });
-        res.render('todos', { title: 'Home', tasks });
+        res.render('todos', { title: 'Task manager', tasks });
     });
 
-router.get('/:todoId/:action', (req, res) => {
-    const { todoId, action } = req.params;
-    switch (String(action).toUpperCase()) {
-        case 'EDIT':
-            break;
-        case 'DELETE':
-            break;
-        default:
-            break;
-    }
-});
-
-router.post('/:todoId/:action', (req, res) => {
-    const { action } = req.params;
-    switch (String(action).toUpperCase()) {
-        case 'UPDATE':
-            break;
-        default:
-            break;
-    }
-})
+router.route('/:taskId/:action')
+    .get((req, res, next) => {
+        const { taskId, action } = req.params;
+        switch (String(action).toUpperCase()) {
+            case 'EDIT':
+                res.render('todos', { title: 'Task manager', tasks });
+                break;
+            case 'DELETE':
+                let tasks2 = tasks;
+                tasks2.map((task, index) => {
+                    if(task.id === taskId) tasks.splice(index, 1);
+                });
+                res.render('todos', { title: 'Task manager', tasks });
+                break;
+            default:
+                break;
+        }
+    });
 
 module.exports = router;
