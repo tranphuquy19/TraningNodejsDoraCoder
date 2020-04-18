@@ -185,9 +185,14 @@ body {
 }
 
 .message-text {
-    padding: 9px 14px;
+    padding: 9px 10px;
     font-size: 1.6rem;
     margin-bottom: 5px;
+}
+
+.message-text>img {
+    background: #eee;
+    max-width: 35vh;
 }
 
 .message-time {
