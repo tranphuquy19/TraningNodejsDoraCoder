@@ -184,15 +184,16 @@ body {
     justify-items: start;
 }
 
-.message-text {
+.message-text p{
     padding: 9px 10px;
     font-size: 1.6rem;
     margin-bottom: 5px;
 }
 
 .message-text>img {
-    background: #eee;
+    padding: 5px 7px;
     max-width: 35vh;
+    border-radius: 5%;
 }
 
 .message-time {
