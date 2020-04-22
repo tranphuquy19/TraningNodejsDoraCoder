@@ -40,18 +40,29 @@ router.route('/:taskId/:action')
         const { taskId, action } = req.params;
         switch (String(action).toUpperCase()) {
             case 'EDIT':
-                res.render('todos', { title: 'Task manager', tasks });
+                let updateTask = tasks.filter(task => task.id === taskId)[0];
+                res.render('update-todos', { title: 'Update Task manager', tasks, updateTask });
                 break;
             case 'DELETE':
                 let tasks2 = tasks;
                 tasks2.map((task, index) => {
-                    if(task.id === taskId) tasks.splice(index, 1);
+                    if (task.id === taskId) tasks.splice(index, 1);
                 });
                 res.render('todos', { title: 'Task manager', tasks });
                 break;
             default:
                 break;
         }
+    })
+    .post((req, res, next) => {
+        const { id, name, description, deadline } = req.body;
+        let task2 = tasks;
+        task2.map((task, index) => {
+            if(task.id === id){
+                tasks.splice(index, 1, {id, name, description, deadline});
+            }
+        });
+        res.redirect('/todos');
     });
 
 module.exports = router;

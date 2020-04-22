@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title><%= title %></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid bg-light">
+        <%- include nav.ejs %>
+        <div class="row p-3">
+            <div class="col-4 border border-primary rounded mt-2 p-3">
+                <h3>Enter your task</h3>
+                <form action="/todos/<%= updateTask.id %>/update" method="POST">
+                    <input name=id value="<%= updateTask.id %>" hidden>
+                    <div class="form-group mt-2 p-3 border border-secondary rounded">
+                        <label for="name">Task name</label>
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                            placeholder="Enter task name" value="<%= updateTask.name %>">
+                        <small id="helpId" class="form-text text-muted">task name</small>
+                    </div>
+                    <div class="form-group mt-2 p-3 border border-secondary rounded">
+                        <label for="name">Task description</label>
+                        <input type="text" class="form-control" name="description" id="description"
+                            aria-describedby="helpId" placeholder="Enter task description" value="<%= updateTask.description%>">
+                        <small id="helpId" class="form-text text-muted">task description</small>
+                    </div>
+                    <div class="form-group mt-2 p-3 border border-secondary rounded">
+                        <label for="deadline">Task deadline</label>
+                        <input type="text" class="form-control" name="deadline" id="deadline" aria-describedby="helpId"
+                            placeholder="Enter task deadline" value="<%= updateTask.deadline %>">
+                        <small id="helpId" class="form-text text-muted">task deadline</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-8 p-3 bg-light" style="max-height: 500px; overflow-y: scroll;">
+                <% tasks.forEach(task => { %>
+                <div class="card m-1 border border-secondary rounded">
+                    <div class="card-header">
+                        <p>Task name: <%= task.name %> <b>(<%= task.id %>)</b> </p>
+                    </div>
+                    <div class="card-body">
+                        <p>Task description: <%= task.description %> </p>
+                        <p>Task deadline: <%= task.deadline %></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/todos/<%= task.id %>/edit" class="btn btn-warning">Edit</a>
+                        <a href="/todos/<%= task.id %>/delete" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
