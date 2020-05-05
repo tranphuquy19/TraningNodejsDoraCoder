@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Vue hướng dẫn</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app">
+        <!-- in dữ liệu từ data ra màn hình -->
+        <p>{{ message }}</p>
+
+        <!-- render theo điều kiện -->
+        <p v-if="seen">Now you see me</p>
+
+        <!-- function trong vue & sự kiện (v-on) -->
+        <button v-on:click="reverseMessage">Reverse Message</button>
+        <!-- đây là cách viết tắt của vuejs (shorthands)-->
+        <button @click="reverseMessage">Reverse Message</button>
+        <br><br>
+        <input type="text" v-model="message">
+        <br><br>
+
+        <!-- vòng lặp trong vuejs -->
+        <p v-for="(member, index) in members" :key="index">
+            <b>{{member.name}}</b> trong vai <i>{{member.nickname}}</i>
+        </p>
+
+        <br> <br>
+        <p> {{ reversedMessage }}</p>
+        <p> {{ reversedMessage }}</p>
+        <p> {{ reversedMessage }}</p>
+
+        <br>
+        <br>
+        <p class="text-primary">Ví dụ về binding class (html)</p>
+        <!-- :class = v-bind:class -->
+        <p :class="vBindingClasses">Ví dụ về binding class (vuejs ver.1)</p>
+        <p :class="{'text-primary': true,'text-right': true}">Ví dụ về binding class (vuejs ver.2)</p>
+
+        <!-- binding class kết hợp v-model để render components -->
+        <input type="checkbox" id="textColor" v-model="vBindingClasses['text-primary']">
+        <label for="textColor">Màu xanh</label>
+
+        <input type="checkbox" id="textAlign" v-model="vBindingClasses['text-right']">
+        <label for="textAlign">Canh phải</label>
+
+        <br>
+        <br>
+        <!-- câu lệnh điều kiện -->
+        <p v-if="message === '1'">Số một</p>
+        <p v-else-if="message === '2'">Số hai</p>
+        <p v-else-if="message === '3'">Số ba</p>
+        <p v-else>Một số nào đó</p>
+
+        <!-- format code (window Shift+Alt+F) (ubuntu Ctrl+Shift+I) -->
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.config.devtools = true;
+        let vueInstance = new Vue({
+            el: '#app',
+            data: {
+                message: 'DoraCoder training NodeJS',
+                seen: false,
+                members: [
+                    { name: 'supper man', nickname: 'sịp man' },
+                    { name: 'wonder woman', nickname: 'chị đại' },
+                    { name: 'bat man', nickname: 'anh giàu' }
+                ],
+                vBindingClasses: {
+                    'text-primary': true,
+                    'text-right': false
+                }
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split(' ').reverse().join(' ');
+                }
+            },
+            computed: {
+                reversedMessage: function () {
+                    return this.message.split(' ').reverse().join(' ') + ' đây là chuỗi mặc định';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
