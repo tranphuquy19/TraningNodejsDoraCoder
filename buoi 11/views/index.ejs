@@ -17,22 +17,37 @@
       min-height: 500px;
       overflow-y: scroll;
     }
+
   </style>
 </head>
 
 <body>
   <div id="app" class="container mt-3">
     <div class="row">
-      <div class="col-md-4 tb">
-        <p v-for="(client, index) in clients" :key="index">{{client.id}}</p>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <h3>Clients</h3>
+          </div>
+          <div class="col tb">
+            <p v-for="(client, index) in clients" :key="index">{{client.id}}</p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-8 tb" id="messBox">
-        <p v-for="(m, index) in mess" :key="index">{{m.id}}: {{m.data}}</p>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <h3>Messages</h3>
+          </div>
+          <div class="col tb" id="messBox">
+            <p v-for="(m, index) in mess" :key="index" class="m-0">{{m.id}}: {{m.data}}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
-      <input type="text" class="form-control" v-model="txtMess" @keyup.enter="sendMessage">
-      <button class="btn btn-primary" @click="sendMessage">
+      <input type="text" class="form-control col-9" v-model="txtMess" @keyup.enter="sendMessage">
+      <button class="btn btn-primary col-2 ml-3" @click="sendMessage">
         SEND
       </button>
     </div>
@@ -86,7 +101,8 @@
       watch: {
         mess() {
           let container = this.$el.querySelector("#messBox");
-          container.scrollTop = container.scrollHeight + 40;
+          container.scrollIntoView(false);
+          container.scrollTop = container.scrollHeight;
         }
       }
     });
